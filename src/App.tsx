@@ -1,17 +1,30 @@
-import { Button } from "./components/button"
-import { Input } from "./components/input"
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
+import LoginPage from "./pages/login";
+import HomePage from "./pages/home";
+
 
 function App() {
 
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Navigate to="/login" />,
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
+    {
+      path: "/home",
+      element: <HomePage />,
+    },
+  ]);
+
   return (
-    <div className="flex h-[100vh] w-[100vw] flex-col justify-center items-center gap-2">
-      <img src="/pix.svg" className="w-56 h-44"/>
-        <form className="flex flex-col gap-2 border border-1 rounded-md w-[40rem] p-4">
-          <Input />
-          <Input />
-          <Button>Send</Button>
-        </form>
-    </div>
+    <RouterProvider
+    router={router}
+    fallbackElement={<div>Loading...</div>}
+    />
   )
 }
 
