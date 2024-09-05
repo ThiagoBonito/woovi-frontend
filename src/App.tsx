@@ -1,6 +1,9 @@
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
 import LoginPage from "./pages/login";
 import HomePage from "./pages/home";
+import { PixPage } from "./pages/pix";
+import { HeaderLayout } from "./layouts/header";
+import { PixTransfer } from "./pages/pix/transfer";
 
 
 function App() {
@@ -15,8 +18,21 @@ function App() {
       element: <LoginPage />,
     },
     {
-      path: "/home",
-      element: <HomePage />,
+      element: <HeaderLayout />,
+      children: [
+        {
+          path: "/home",
+          element: <HomePage />,
+        },
+        {
+          path: "/pix",
+          element: <PixPage />,
+        },
+        {
+          path: "/pix/:id/transfer",
+          element: <PixTransfer />
+        }
+      ]
     },
   ]);
 
